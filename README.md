@@ -8,4 +8,4 @@ A simple web app with:
 1. Clone this repository
 2. Push to GitHub
 3. Enable **GitHub Pages** in repository settings
-4. Access your portal at: `https://<your-username>.github.io/safety-observation-portal`
+4. Access your portal at: `https://operationsexcellence-otg.github.io/FORM-devenvironment
