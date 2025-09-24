@@ -1,4 +1,12 @@
-<script>
+
+  // Tab switching
+  function switchTab(evt, tabId) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    evt.currentTarget.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+  }
+
   // Random code generator
   function generateCode(length = 6) {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -31,9 +39,9 @@
     const reader = new FileReader();
     reader.onload = async function() {
       const base64Data = reader.result.split(",")[1]; // strip prefix
-      const code = generateCode();   // ✅ generate 6-digit code
 
-      // ✅ prepend code to filename
+      // ✅ generate code and prepend it to filename
+      const code = generateCode();
       const newFileName = `${code}-${file.name}`;
 
       const body = {
@@ -43,7 +51,7 @@
       };
 
       try {
-        const response = await fetch("YOUR-POWER-AUTOMATE-URL-HERE", {
+        const response = await fetch("https://default2e0f74ad066f44ea9cf9557b3c2f8d.49.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/6027004eb29e446b9d31144961ae4d97/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=BvvZnupoOzVkAoh5KYZJ_UsuM2knXlcPLkpRSLFAXO8", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body)
@@ -52,7 +60,7 @@
         if (response.ok) {
           message.style.color = "green";
           message.textContent = "✅ File uploaded successfully!";
-          generatedCodeEl.textContent = code;   // ✅ show code in UI
+          generatedCodeEl.textContent = code; // ✅ show code in UI
           codeSection.style.display = "block";
         } else {
           const errorText = await response.text();
@@ -73,4 +81,4 @@
       alert("Code copied: " + code);
     });
   }
-</script>
+
