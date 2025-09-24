@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safety Observation Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="card">
+    <div class="card-header">
+      <h2>📋 Safety Observation Portal</h2>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab(event, 'formTab')">Form</div>
+      <div class="tab" onclick="switchTab(event, 'uploadTab')">File Upload</div>
+    </div>
+
+    <!-- Tab Contents -->
+    <div id="formTab" class="tab-content active">
+      <div id="loader" class="spinner"></div>
+      <iframe 
+        src="https://forms.office.com/Pages/ResponsePage.aspx?id=rXQPLm8G6kSc-VV7PC-NSeWT8yXfPp1Jnc9wKq4L7J9UMERCSURWRVg1SThXVkhVU1hYSTZSVzNSTi4u&r388ad2dde4704c85a4bfca0f7a0468b8=0001&r598411bb4c17426b92deb8699b9b1fe2=%22Batam%22" 
+        allowfullscreen
+        onload="document.getElementById('loader').style.display='none'; this.style.display='block';">
+      </iframe>
+    </div>
+
+    <div id="uploadTab" class="tab-content">
+      <div class="upload-box">
+        <h3>📂 Upload Supporting File</h3>
+        <form id="uploadForm">
+          <input type="file" id="fileInput" required />
+          <br />
+          <button type="submit">Upload</button>
+        </form>
+        <p id="message"></p>
+
+        <div id="codeSection">
+          <p>Your attachment code:</p>
+          <div id="generatedCode"></div>
+          <button id="copyBtn" onclick="copyCode()">Copy Code</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
